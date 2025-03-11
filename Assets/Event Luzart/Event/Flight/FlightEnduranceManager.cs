@@ -159,7 +159,7 @@ namespace Luzart
                 int count = dataFlightEndurance.listTotalPeople.Count;
                 int gold = CountReward / count;
 
-                DataWrapperGame.ReceiveReward(ValueFirebase.FlightEnduranceReceive,new DataResource(new DataTypeResource(RES_type.Gold), gold));
+                DataWrapperGame.ReceiveReward(ValueFirebase.FlightEnduranceReceive, new DataResource(new DataTypeResource(RES_type.Gold), gold));
                 //DataManager.Instance.ReceiveRes(dataResource: new DataResource(new DataTypeResource(RES_type.Gold), gold)); 
             }
             SaveData();

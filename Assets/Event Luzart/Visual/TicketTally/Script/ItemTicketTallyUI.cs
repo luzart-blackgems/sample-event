@@ -11,10 +11,11 @@ namespace Luzart
     {
         public Button btnClick;
         public int level;
-        public List<DataResource> dataRes;
+        public List<DataResource> dataRes { get; set; }
         public ResUI resUI;
         public TMP_Text txtStt;
-        public GameObject obLock, obComplete;
+        public BaseSelect bsIconLock;
+        public BaseSelect bsLock;
         public BoxInforMess boxInforMess;
         void Start()
         {
@@ -44,31 +45,29 @@ namespace Luzart
         }
         private void SwitchState(EStateClaim eState)
         {
-            DisableAllButton();
             switch (eState)
             {
                 case EStateClaim.CanClaim:
                     {
+                        bsLock?.Select(0);
+                        bsIconLock?.Select(0);
                         break;
                     }
                 case EStateClaim.Claimed:
                     {
-                        GameUtil.SetActiveCheckNull(obComplete, true);
+                        bsLock?.Select(1);
+                        bsIconLock?.Select(1);
                         break;
                     }
                 case EStateClaim.WillClaim:
                     {
-                        GameUtil.SetActiveCheckNull(obLock, true);
+                        bsLock?.Select(2);
+                        bsIconLock?.Select(2);
                         break;
                     }
                 default:
                     break;
             }
-        }
-        private void DisableAllButton()
-        {
-            GameUtil.SetActiveCheckNull(obLock, false);
-            GameUtil.SetActiveCheckNull(obComplete, false);
         }
     }
 }

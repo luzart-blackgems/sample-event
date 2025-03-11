@@ -92,7 +92,7 @@ namespace Luzart
         {
             var dataLoss = dataResLoss.Clone();
             dataLoss.amount = -Mathf.Abs(dataResLoss.amount);
-            DataWrapperGame.BuyReward(dataLoss, OnCompleteDone, ValueFirebase.TimeOutAreYouSure);
+            DataWrapperGame.SubtractResources(dataLoss, OnCompleteDone, ValueFirebase.TimeOutAreYouSure);
         }
         private void OnCompleteDone()
         {

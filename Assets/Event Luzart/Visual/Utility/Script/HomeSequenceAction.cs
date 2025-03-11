@@ -6,38 +6,25 @@ using UnityEngine;
 
 public class HomeSequenceAction : MonoBehaviour
 {
-    public UIMoveToTicketTally uiMoveToTicketTally;
+    public SequenceActionEvent[] sequenceActionEvents;
 
     private void Start()
     {
-        GameUtil.StepToStep(new Action<Action>[]
+        int length = sequenceActionEvents.Length;
+        for (int i = 0; i < length; i++)
         {
-
-            OnShowTutorialTicketTally,
-            MoveTicketTally
-
+            sequenceActionEvents[i]?.PreInit();
+        }
+        List<Action<Action>> listStep = new List<Action<Action>>();
+        for (int i = 0; i < length; i++)
+        {
+            int index = i;
+            var instance = sequenceActionEvents[index];
+            listStep.Add(next => instance?.Init(next));
+        }
+        GameUtil.Instance.WaitAFrame(() =>
+        {
+            GameUtil.StepToStep(listStep.ToArray());
         });
-    }
-    private void OnShowTutorialTicketTally(Action onDone)
-    {
-        bool isHasEvent = EventManager.Instance.IsHasEvent(EEventName.TicketTally);
-        bool isUnlockEvent = EventManager.Instance.IsUnlockLevel(EEventName.TicketTally);
-        bool isTutorial = EventManager.Instance.dataEvent.isCompleteTutorialTicket;
-        if (isHasEvent && isUnlockEvent && !isTutorial)
-        {
-            var uiNoti = Luzart.UIManager.Instance.ShowUI<UITicketTallyNoti>(UIName.TicketTallyNoti, () =>
-            {
-                var ui = Luzart.UIManager.Instance.ShowUI<UITutorialStepTicketTally>(UIName.TutorialStepTicketTally);
-                ui.InitTutorial(onDone);
-            });
-        }
-        else
-        {
-            onDone?.Invoke();
-        }
-    }
-    private void MoveTicketTally(Action onDone)
-    {
-        uiMoveToTicketTally.AnimationAndCheckTicket(onDone);
     }
 }

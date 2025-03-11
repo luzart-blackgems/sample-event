@@ -1,9 +1,9 @@
 namespace Luzart
 {
-    //using BG_Library.NET;
-    //using JetBrains.Annotations;
+#if ENABLE_ADS
+    using BG_Library.NET;
+#endif
     using System;
-    using System.Diagnostics;
 
     public class AdsWrapperManager 
     {
@@ -11,52 +11,48 @@ namespace Luzart
         private static int countInter = 0;
         public static void ShowReward(string where, Action onDone, Action onFail)
         {
-            //GameUtil.Log(where);
-            //if (GameManager.IS_REMOVE_ADS_REWARD)
-            //{
-            //    onDone?.Invoke();
-            //    return;
-            //}
-            //if (!AdsManager.IsRewardedReady())
-            //{
-            //    onFail?.Invoke();
-            //    return;
-            //}
-            //where = $"{where}_level_{DataManager.Instance.CurrentLevel}";
-            //AdsManager.ShowRewardVideo(where, onDone);
+#if ENABLE_ADS
+            if (!AdsManager.IsRewardedReady())
+            {
+                onFail?.Invoke();
+                return;
+            }
+            where = $"{where}_level_{DataWrapperGame.CurrentLevel}";
+            GameUtil.Log(where);
+            AdsManager.ShowRewardVideo(where, onDone);
+#else
+            onDone?.Invoke();
+#endif
         }
         public static void ShowInter(string where, Action onDone)
         {
-            //Action onDoneShow = () =>
-            //{
-            //    GameUtil.StepToStep(new Action<Action>[]
-            //    {
-            //        ShowUIBundle,
-            //        OnDoneAction,
-            //    });
-            //};
-            //if (GameManager.IS_REMOVE_ADS_INTER)
-            //{
-            //    onDoneShow?.Invoke();
-            //    return;
-            //}
-            //if(DataManager.Instance.CurrentLevel >= GameCustom.Ins.RemoteConfigCustom.levelShowAdsInter)
-            //{
-            //    GameUtil.Log(where);
-            //    AdsManager.ShowInterstitial(where, onDoneShow);
-            //}
-            //else
-            //{
-            //    OnDoneAction();
-            //}
+            Action onDoneShow = () =>
+            {
+                GameUtil.StepToStep(new Action<Action>[]
+                {
+                    ShowUIBundle,
+                    OnDoneAction,
+                });
+            };
+#if ENABLE_ADS
+            if (DataWrapperGame.CurrentLevel >= GameCustom.Ins.RemoteConfigCustom.levelShowAdsInter)
+            {
+                GameUtil.Log(where);
+                AdsManager.ShowInterstitial(where, onDoneShow);
+            }
+            else
+#endif
+            {
+                OnDoneAction();
+            }
 
 
 
-            //void OnDoneAction(Action onActionDone = null)
-            //{
-            //    onDone?.Invoke();
-            //}
-    
+            void OnDoneAction(Action onActionDone = null)
+            {
+                onDone?.Invoke();
+            }
+
         }
         private static void ShowUIBundle(Action onDone)
         {
@@ -74,9 +70,11 @@ namespace Luzart
         }
         public static void PurchaseRemoveAds()
         {
-            //AdsManager.Ins.PurchaseRemoveAds();
-            //PackManager.Instance.SaveBuyPack("com.bakerysort.cake.jamcolor.bg.removeads");
-            
+#if ENABLE_ADS
+            AdsManager.Ins.PurchaseRemoveAds();
+#endif
+            PackManager.Instance?.SaveBuyPack("capybara.collector.eatrun.removeads");
+
         }
     }
     public static class KeyAds

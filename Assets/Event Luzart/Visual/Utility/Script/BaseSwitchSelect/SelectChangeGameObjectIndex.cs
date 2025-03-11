@@ -11,13 +11,13 @@ public class SelectChangeGameObjectIndex : BaseSelect
         int length = obSelects.Length;
         for (int i = 0; i < length; i++)
         {
-            bool status = false;
             if(i == index)
             {
-                status = true;
+                continue;
             }
-            SetActiveGroup(obSelects[i],status);
+            SetActiveGroup(obSelects[i],false);
         }
+        SetActiveGroup(obSelects[index], true);
 
     }
     private void SetActiveObject(GameObject ob, bool status)

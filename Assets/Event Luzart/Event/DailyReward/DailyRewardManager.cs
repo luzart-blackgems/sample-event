@@ -21,7 +21,7 @@ namespace Luzart
                 TimeSpan timeSpan = TimeSpan.FromSeconds(deltaTime);
                 int day = timeSpan.Days;
                 int dayNow = day % 7;
-                long timeStartEvent = TimeUtils.GetLongTimeByDay(timeStartGame, day);
+                long timeStartEvent = TimeUtils.GetLongTimeByDay(timeStartCurrent, -dayNow);
 
                 TimeEvent timeEvent = new TimeEvent();
                 timeEvent.timeStart = timeStartEvent;

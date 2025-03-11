@@ -6,12 +6,74 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIMoveToTicketTally : MonoBehaviour
+public class SequenceActionEventTicketTally : SequenceActionEvent
 {
-    public ButtonEventTicketTally btnTicketTally;
+    [SerializeField]
+    private ButtonEventTicketTally _btnTicketTally;
+    public ButtonEventTicketTally btnTicketTally
+    {
+        get
+        {
+            if (_btnTicketTally == null)
+            {
+                _btnTicketTally = FindAnyObjectByType<ButtonEventTicketTally>();
+            }
+            return _btnTicketTally;
+        }
+    }
 
     public RectTransform rtTicketTally;
     public TMP_Text txtValueTicketTally;
+
+    public override void PreInit()
+    {
+        TicketTallyManager ticketTallyManager = EventManager.Instance.ticketTallyManager;
+        int countKey = ticketTallyManager.valueKey;
+        int totalCurrent = ticketTallyManager.dataTicketTally.totalUse;
+        int preTotalCurrent = totalCurrent - countKey;
+        btnTicketTally.SetVisual(preTotalCurrent);
+    }
+
+    public override void Init(Action callback)
+    {
+        GameUtil.StepToStep(new Action<Action>[]
+        {
+            OnShowTutorialTicketTally,
+            MoveTicketTally,
+            OnDoneCallBack
+        });
+
+        void OnDoneCallBack(Action onDone)
+        {
+            callback?.Invoke();
+        }
+    }
+
+
+    private void OnShowTutorialTicketTally(Action onDone)
+    {
+        bool isHasEvent = EventManager.Instance.IsHasEvent(EEventName.TicketTally);
+        bool isUnlockEvent = EventManager.Instance.IsUnlockLevel(EEventName.TicketTally);
+        bool isTutorial = EventManager.Instance.dataEvent.isCompleteTutorialTicket;
+        if (isHasEvent && isUnlockEvent && !isTutorial)
+        {
+            var uiNoti = Luzart.UIManager.Instance.ShowUI<UITicketTallyNoti>(UIName.TicketTallyNoti, () =>
+            {
+                var ui = Luzart.UIManager.Instance.ShowUI<UITutorialStepTicketTally>(UIName.TutorialStepTicketTally);
+                ui.btnTicket = btnTicketTally;
+                ui.InitTutorial(onDone);
+            });
+        }
+        else
+        {
+            onDone?.Invoke();
+        }
+    }
+    private void MoveTicketTally(Action onDone)
+    {
+        AnimationAndCheckTicket(onDone);
+    }
+
     public void AnimationAndCheckTicket(Action onDone)
     {
         if (IsHasAnimTicketDaily)
@@ -89,6 +151,6 @@ public class UIMoveToTicketTally : MonoBehaviour
     }
     private void BlockScreen(bool isBlock)
     {
-        Debug.LogError("[UIMoveTOTicketTally] Chua Block Canvas " + isBlock);
+        Debug.LogError("BlockScreen");
     }
 }

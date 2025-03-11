@@ -37,7 +37,7 @@ namespace Eco.TweenAnimation
         private Image _image;
 
         [SerializeField, HideLabel, TabGroup("Animation Setting")]
-        private BaseOptions _baseOptions;
+        protected BaseOptions _baseOptions;
 
         [SerializeField, HideLabel, TabGroup("Animation Setting"), ShowIf("IsVector3Option")]
         private Vector3Options _vector3Options;
@@ -54,11 +54,11 @@ namespace Eco.TweenAnimation
         [SerializeField, HideLabel, TabGroup("Animation Debug")]
         internal AnimationDebug _animationDebug;
 
-        private AnimationFactory _factory;
-        private IAnimation _ianimation;
-        private Tweener _tweener;
-        private Sequence _sequence;
-        private bool _isShow;
+        protected AnimationFactory _factory;
+        protected IAnimation _ianimation;
+        protected Tweener _tweener;
+        protected Sequence _sequence;
+        protected bool _isShow;
 
         public EAnimation Animation { get => _animation; }
         public bool IsRegisterScreenToggle { get => _registerScreenToggle; }
@@ -135,18 +135,18 @@ namespace Eco.TweenAnimation
             _ianimation?.SetAnimationFrom();
         }
 
-        private void CheckAndInitialized()
+        protected void CheckAndInitialized()
         {
             _ianimation ??= GetFactory().CreateAnimation();
         }
 
-        private AnimationFactory GetFactory()
+        protected AnimationFactory GetFactory()
         {
             _factory ??= new AnimationFactory(this);
             return _factory;
         }
 
-        private bool IsFadeAnimation()
+        protected bool IsFadeAnimation()
         {
             return _animation == EAnimation.Fade;
         }

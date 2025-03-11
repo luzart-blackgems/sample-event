@@ -135,7 +135,7 @@ namespace Luzart
             //});
     
         }
-        private void Awake()
+        private void Start()
         {
             Observer.Instance?.AddObserver(ObserverKey.OnAddTicket, OnReceiveData);
         }

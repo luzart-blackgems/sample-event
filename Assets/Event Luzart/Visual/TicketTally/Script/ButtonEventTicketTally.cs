@@ -30,15 +30,23 @@ namespace Luzart
                 Observer.Instance.AddObserver(ObserverKey.TimeActionPerSecond, OnTimePerSecond);
             }
 
-            UIManager.AddActionRefreshUI(() => InitEvent(null));
+            UIManager.AddActionRefreshUI(RefreshUI);
         }
         private void OnDestroy()
         {
             Observer.Instance?.RemoveObserver(ObserverKey.TimeActionPerSecond, OnTimePerSecond);
-            UIManager.RemoveActionRefreshUI(() => InitEvent(null));
+            UIManager.RemoveActionRefreshUI(RefreshUI);
+        }
+        public void RefreshUI()
+        {
+            InitEvent(null);
         }
         private void OnTimePerSecond(object data)
         {
+            if (!IsActiveEvent)
+            {
+                return;
+            }
             long timeCurrent = TimeUtils.GetLongTimeCurrent;
             long timeContain = EventManager.Instance.ticketTallyManager.dataTicketTally.dbEvent.timeEvent.TimeEndUnixTime - timeCurrent;
             txtTime.text = GameUtil.LongTimeSecondToUnixTime(timeContain);

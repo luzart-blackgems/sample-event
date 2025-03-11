@@ -3,10 +3,8 @@ namespace Luzart
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using UnityEditor.PackageManager;
     using UnityEngine;
     using UnityEngine.SceneManagement;
-    using UnityEngine.UIElements;
 
     public partial class EventManager
     {
@@ -221,7 +219,12 @@ namespace Luzart
         {
 
         }
-
+        //private void DestroyFuncionInGame()
+        //{
+        //    EventDispatcher.RemoveEvent(EventID.OnLevelStart, OnStartLevel);
+        //    EventDispatcher.RemoveEvent(EventID.OnWinlevel, OnWinLevel);
+        //    EventDispatcher.RemoveEvent(EventID.OnTimeOutLevel, OnTimeOutLevel);
+        //}
         private void OnStartLevel(object data)
         {
 

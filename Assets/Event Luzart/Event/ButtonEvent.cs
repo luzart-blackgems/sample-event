@@ -5,7 +5,7 @@ namespace Luzart
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.UI;
-
+    
     public class ButtonEvent : MonoBehaviour
     {
         public EEventName eEventName;
@@ -20,7 +20,7 @@ namespace Luzart
                 InitEvent(null);
             }
         }
-
+    
         public Action actionClick;
         public bool IsActiveEvent
         {
@@ -39,6 +39,10 @@ namespace Luzart
         public virtual void InitEvent(Action action)
         {
             this.actionClick = action;
+            if(gameObject == null)
+            {
+                return;
+            }
             if (IsActiveEvent && IsUnlockLevel)
             {
                 gameObject.SetActive(true);
@@ -52,7 +56,7 @@ namespace Luzart
         }
         protected virtual void InitButton()
         {
-
+    
         }
         private void ClickBtnEvent()
         {

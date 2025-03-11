@@ -1,6 +1,7 @@
 using Luzart;
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -90,15 +91,18 @@ public class ResUI : MonoBehaviour
     }
     private void SetIcon()
     {
-       // SetImage(imIcon, ResourceManager.Instance.spriteResourcesSO.GetSpriteIcon(dataRes));
+        var sp = Luzart.ResourcesManager.Instance.spriteResourcesSO.GetSpriteIcon(dataRes);
+        SetImage(imIcon, sp);
     }
     private void SetIconGold()
     {
-        //SetImage(imIconGold, ResourceManager.Instance.spriteResourcesSO.GetSpriteIcon(dataRes));
+        var sp = Luzart.ResourcesManager.Instance.spriteResourcesSO.GetSpriteIcon(dataRes);
+        SetImage(imIconGold, sp);
     }
     private void SetBg()
     {
-       // SetImage(imBg, ResourceManager.Instance.spriteResourcesSO.GetSpriteBG(0));
+        var sp = Luzart.ResourcesManager.Instance.spriteResourcesSO.GetSpriteBG(0);
+        SetImage(imBg, sp);
     }
     private void SetTextPreEndString()
     {

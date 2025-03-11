@@ -1,7 +1,5 @@
 ﻿using Luzart;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class DataWrapperGame
@@ -48,26 +46,49 @@ public static class DataWrapperGame
             return new Sprite[0];
         }
     }
-    public static void ReceiveReward(string where = null, params DataResource[] dataResource)
+    public static void ReceiveReward(string where = null,params DataResource[] dataResource)
     {
         Debug.LogError($"[DataWrapperGame] Don't receive Reward ");
     }
     public static void ReceiveRewardShowPopUp(string where = null, Action onDone = null ,params DataResource [] dataResource)
     {
-        Debug.LogError($"[DataWrapperGame] Don't receive Reward ");
         ReceiveReward(where, dataResource);
+        var ui = Luzart.UIManager.Instance.ShowUI<UIReceiveRes>(UIName.ReceiveRes, onDone);
+        ui.Initialize(dataResource);
+
     }
-    public static void BuyReward(DataResource dataRes, Action onDone = null, string where = null)
+    public static void SubtractResources(DataResource dataRes, Action onDone = null, string where = null)
     {
-        Debug.LogError($"[DataWrapperGame] Don't buy Reward ");
+        int amount = GetResource(dataRes.type);
+        if(amount >= dataRes.amount)
+        {
+            SubtractResources(dataRes);
+            onDone?.Invoke();
+        }
+        else 
+        {
+            Luzart.UIManager.Instance.ShowToast("You need to earn enough to buy it !");
+        }
+
+
+        
+    }
+    private static void SubtractResources(DataResource dataRes)
+    {
+        Debug.LogError($"[DataWrapperGame] Don't have resource SubtractResources game to check ");
     }
     public static int ResourceContinueGame
     {
         get
         {
             Debug.LogError($"[DataWrapperGame] Don't have resource continue game to check ");
-            return 0;
+            return 100;
         }
+    }
+    public static int GetResource(DataTypeResource dataTypeResource)
+    {
+        Debug.LogError($"[DataWrapperGame] Don't have resource GetResource to check ");
+        return 100;
     }
 }
 [System.Serializable]
@@ -98,12 +119,6 @@ public class DataResource
     public int idIcon = 0;
     [System.NonSerialized]
     public Sprite spIcon;
-
-    //[JsonIgnore]
-    //public int idBg = 0;
-    //[JsonIgnore]
-    //[JsonIgnore]
-    //public Sprite spBg;
     public DataResource Clone()
     {
         return new DataResource(this.type, this.amount);
@@ -161,7 +176,7 @@ public enum RES_type
     Gold = 1,
     Heart = 2,
     HeartTime = 3,
-    Booster = 4, // 0: ReRoll, 1: Hammer, 2: Rocket, 3: MoveTray
+    Booster = 4, // 0: Scale, 1: Suck, 2: Speed, 3: Indicator
     Chest = 5, // 0: None, start for 1, 2 , 3,4
     NoAds = 6,
 }
