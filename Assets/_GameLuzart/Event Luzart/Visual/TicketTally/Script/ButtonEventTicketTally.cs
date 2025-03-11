@@ -3,8 +3,6 @@ namespace Luzart
 
     using DG.Tweening;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using TMPro;
     using UnityEngine;
 
@@ -23,23 +21,15 @@ namespace Luzart
                 return EventManager.Instance.ticketTallyManager;
             }
         }
-        private void Awake()
+        protected override void Start()
         {
-            if (IsActiveEvent)
-            {
-                Observer.Instance.AddObserver(ObserverKey.TimeActionPerSecond, OnTimePerSecond);
-            }
-
-            UIManager.AddActionRefreshUI(RefreshUI);
+            base.Start();
+            Observer.Instance?.AddObserver(ObserverKey.TimeActionPerSecond, OnTimePerSecond);
         }
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             Observer.Instance?.RemoveObserver(ObserverKey.TimeActionPerSecond, OnTimePerSecond);
-            UIManager.RemoveActionRefreshUI(RefreshUI);
-        }
-        public void RefreshUI()
-        {
-            InitEvent(null);
         }
         private void OnTimePerSecond(object data)
         {
@@ -154,14 +144,6 @@ namespace Luzart
             sq.Append(progressBarUI.SetSliderTween(0, 1, timeFloat, null));
             sq.Join(DOVirtual.Int(0, totalRequire, timeFloat, (x) => txtTicketCurrent.text = $"{x}/{totalRequire}"));
             return sq;
-        }
-        public void SetSlider(int preIndex, int curIndex, float prePercent, float curPercent, Action onDone = null)
-        {
-
-            int preRequire = ticketTallyManager.dataTicketTally.RequireByLevel(preIndex);
-            int curRequire = ticketTallyManager.dataTicketTally.RequireByLevel(curIndex);
-            int curContain = ticketTallyManager.dataTicketTally.ContainItem;
-
         }
         public override void InitEvent(Action action)
         {

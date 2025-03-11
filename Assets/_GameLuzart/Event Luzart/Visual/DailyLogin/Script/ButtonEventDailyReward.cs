@@ -8,7 +8,6 @@ namespace Luzart
 
     public class ButtonEventDailyReward : ButtonEvent
     {
-        private DB_Event db_Event;
         public GameObject obNoti;
         private DailyRewardManager dailyRewardManager
         {
@@ -16,14 +15,6 @@ namespace Luzart
             {
                 return EventManager.Instance.dailyRewardManager;
             }
-        }
-        private void Awake()
-        {
-            UIManager.AddActionRefreshUI(InitRefreshUI);
-        }
-        private void OnDestroy()
-        {
-            UIManager.RemoveActionRefreshUI(InitRefreshUI);
         }
         public void CheckNoti()
         {
@@ -35,10 +26,6 @@ namespace Luzart
             base.InitButton();
             CheckNoti();
         }
-        public void InitRefreshUI()
-        {
-            InitEvent(null);
-        }
         public override void InitEvent(Action action)
         {
             base.InitEvent(ClickDailyReward);
@@ -46,11 +33,6 @@ namespace Luzart
         private void ClickDailyReward()
         {
             UIManager.Instance.ShowUI<UIDailyReward>(UIName.DailyReward);
-        }
-        protected override void Start()
-        {
-            base.Start();
-
         }
     }
 }
