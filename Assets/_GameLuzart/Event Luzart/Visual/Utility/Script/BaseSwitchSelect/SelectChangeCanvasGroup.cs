@@ -1,23 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SelectChangeCanvasGroup : BaseSelect
+namespace Luzart
 {
-    public CanvasGroup canvasGroup;
-    public float valueSelect = 1;
-    public float valueUnSelect = 0.5f;
-
-    public override void Select(bool isSelect)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class SelectChangeCanvasGroup : BaseSelect
     {
-        base.Select(isSelect);
-        if (isSelect)
+        public CanvasGroup canvasGroup;
+        public float valueSelect = 1;
+        public float valueUnSelect = 0.5f;
+    
+        public override void Select(bool isSelect)
         {
-            canvasGroup.alpha = valueSelect;
-        }
-        else
-        {
-            canvasGroup.alpha = valueUnSelect;
+            base.Select(isSelect);
+            if (isSelect)
+            {
+                canvasGroup.alpha = valueSelect;
+            }
+            else
+            {
+                canvasGroup.alpha = valueUnSelect;
+            }
         }
     }
 }

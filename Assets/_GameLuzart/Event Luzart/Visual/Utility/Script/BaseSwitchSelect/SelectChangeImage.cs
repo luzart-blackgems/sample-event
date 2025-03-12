@@ -1,32 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class SelectChangeImage : BaseSelect
+namespace Luzart
 {
-    public Image[] imSelect;
-    public Sprite[] spSelect;
-    public Sprite[] spUnSelect;
-
-    public override void Select(bool isSelect)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.UI;
+    
+    public class SelectChangeImage : BaseSelect
     {
-        if (imSelect != null)
+        public Image[] imSelect;
+        public Sprite[] spSelect;
+        public Sprite[] spUnSelect;
+    
+        public override void Select(bool isSelect)
         {
-            int length = imSelect.Length;
-            for (int i = 0; i < length; i++)
+            if (imSelect != null)
             {
-                if (isSelect)
+                int length = imSelect.Length;
+                for (int i = 0; i < length; i++)
                 {
-                    imSelect[i].sprite = spSelect[i];
+                    if (isSelect)
+                    {
+                        imSelect[i].sprite = spSelect[i];
+                    }
+                    else
+                    {
+                        imSelect[i].sprite = spUnSelect[i];
+                    }
+    
                 }
-                else
-                {
-                    imSelect[i].sprite = spUnSelect[i];
-                }
-
             }
         }
+    
     }
-
 }

@@ -1,37 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SelectChangeGameObject : BaseSelect
+namespace Luzart
 {
-    public GameObject[] obSelect; 
-    public GameObject[] obUnSelect;
-
-    public override void Select(bool isSelect)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class SelectChangeGameObject : BaseSelect
     {
-        int lengthSelect = obSelect.Length;
-        int lengthUnSelect = obUnSelect.Length;
-        int length = Mathf.Max(lengthSelect, lengthUnSelect);
-        for (int i = 0; i < length; i++)
+        public GameObject[] obSelect; 
+        public GameObject[] obUnSelect;
+    
+        public override void Select(bool isSelect)
         {
-            int index = i;
-            if(index < lengthSelect)
+            int lengthSelect = obSelect.Length;
+            int lengthUnSelect = obUnSelect.Length;
+            int length = Mathf.Max(lengthSelect, lengthUnSelect);
+            for (int i = 0; i < length; i++)
             {
-                SetActiveObject(obSelect[index], isSelect);
+                int index = i;
+                if(index < lengthSelect)
+                {
+                    SetActiveObject(obSelect[index], isSelect);
+                }
+                if(index < lengthUnSelect)
+                {
+                    SetActiveObject(obUnSelect[index], !isSelect);
+                }
             }
-            if(index < lengthUnSelect)
-            {
-                SetActiveObject(obUnSelect[index], !isSelect);
-            }
+    
         }
-
-    }
-    private void SetActiveObject(GameObject ob, bool status)
-    {
-        if(ob != null)
+        private void SetActiveObject(GameObject ob, bool status)
         {
-            ob.SetActive(status);
+            if(ob != null)
+            {
+                ob.SetActive(status);
+            }
+    
         }
-
     }
 }

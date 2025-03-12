@@ -1,28 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
-public class SelectChangeTMPColor : BaseSelect
+namespace Luzart
 {
-    public TMP_Text[] txts;
-    public Color[] colorsSelect;
-    public Color[] colorsUnSelect;
-
-    public override void Select(bool isSelect)
+    using System.Collections;
+    using System.Collections.Generic;
+    using TMPro;
+    using UnityEngine;
+    
+    public class SelectChangeTMPColor : BaseSelect
     {
-        if (txts != null)
+        public TMP_Text[] txts;
+        public Color[] colorsSelect;
+        public Color[] colorsUnSelect;
+    
+        public override void Select(bool isSelect)
         {
-            int length = txts.Length;
-            for (int i = 0; i < length; i++)
+            if (txts != null)
             {
-                if (isSelect)
+                int length = txts.Length;
+                for (int i = 0; i < length; i++)
                 {
-                    txts[i].color = colorsSelect[i];
-                }
-                else
-                {
-                    txts[i].color = colorsUnSelect[i];
+                    if (isSelect)
+                    {
+                        txts[i].color = colorsSelect[i];
+                    }
+                    else
+                    {
+                        txts[i].color = colorsUnSelect[i];
+                    }
                 }
             }
         }

@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 3655711745293608335}
   - component: {fileID: 956755332715888845}
   - component: {fileID: 16597500548359235}
+  - component: {fileID: 1046950408498653659}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -212,7 +213,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -256,6 +257,41 @@ MonoBehaviour:
   - {fileID: 8055218641919758745}
   listSceneCache: []
   canvas: {fileID: 293931301537864216}
+--- !u!114 &1046950408498653659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520097309322035806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a689ef52cdc2c974c9357f675e76f3ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pixelWidth1: 850
+  pixelHeight1: 2160
+  c1: 0
+  pixelWidth2: 1856
+  pixelHeight2: 2160
+  c2: 1
+  clampMin: 0
+  claimMax: 1
+  actionSetFloat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3655711745293608335}
+        m_TargetAssemblyTypeName: UnityEngine.UI.CanvasScaler, UnityEngine.UI
+        m_MethodName: set_matchWidthOrHeight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2138712016912928185
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +622,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseEventManagers:
   - {fileID: 5448345009506783120}
+  - {fileID: 3880519149857489513}
+  - {fileID: 0}
   list_Event:
   - idEvent: dailyreward
     eventName: 7
@@ -690,9 +728,296 @@ MonoBehaviour:
             type: 0
             id: 0
         isClaimed: 0
+  - idEvent: ticketTally
+    eventName: 2
+    timeEvent:
+      timeStart: 0
+      timeEndPreview: 0
+      timeStartReview: 0
+      timeEnd: 0
+    allTypeResources:
+    - type: 0
+      gifts:
+      - require: 2
+        groupGift:
+          dataResources:
+          - type:
+              type: 3
+              id: 0
+            amount: 900
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 4
+        groupGift:
+          dataResources:
+          - type:
+              type: 1
+              id: 0
+            amount: 100
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 6
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 0
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 8
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 2
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 10
+        groupGift:
+          dataResources:
+          - type:
+              type: 3
+              id: 0
+            amount: 900
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 11
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 0
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 12
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 0
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 13
+        groupGift:
+          dataResources:
+          - type:
+              type: 1
+              id: 0
+            amount: 200
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 14
+        groupGift:
+          dataResources:
+          - type:
+              type: 3
+              id: 0
+            amount: 1800
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 15
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 2
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 16
+        groupGift:
+          dataResources:
+          - type:
+              type: 1
+              id: 0
+            amount: 400
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 17
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 0
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 18
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 1
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 19
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 0
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 20
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 3
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 22
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 1
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 24
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 2
+            amount: 1
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 26
+        groupGift:
+          dataResources:
+          - type:
+              type: 1
+              id: 0
+            amount: 600
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 28
+        groupGift:
+          dataResources:
+          - type:
+              type: 3
+              id: 0
+            amount: 2700
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 30
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 1
+            amount: 3
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 31
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 0
+            amount: 3
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 32
+        groupGift:
+          dataResources:
+          - type:
+              type: 3
+              id: 0
+            amount: 3600
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 33
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 0
+            amount: 3
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 34
+        groupGift:
+          dataResources:
+          - type:
+              type: 4
+              id: 0
+            amount: 3
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
+      - require: 35
+        groupGift:
+          dataResources:
+          - type:
+              type: 1
+              id: 0
+            amount: 2000
+          typeChest:
+            type: 0
+            id: 0
+        isClaimed: 0
   list_EventUnlockLevel:
   - eventName: 7
     level: 2
+  - eventName: 2
+    level: 15
   events: []
 --- !u!1 &6545025861742938044
 GameObject:
@@ -808,4 +1133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b30aee384c7d7040a9f33a5f0ebba55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteResourcesSO: {fileID: 11400000, guid: 7cd0fb9f64018114fb4ff267fe0fd95e, type: 2}
+  spriteResourcesSO: {fileID: 11400000, guid: bba9884cfc740024091fb1811e21eb63, type: 2}

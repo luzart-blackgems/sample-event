@@ -1,5 +1,3 @@
-namespace Luzart
-{
 #if UNITY_EDITOR
     using System.Collections.Generic;
     using System.IO;
@@ -102,7 +100,7 @@ namespace Luzart
             // Cập nhật Build Settings với danh sách mới
             EditorBuildSettings.scenes = scenes.ToArray();
 
-            GameUtil.Log("Scene " + sceneName + " đã được thêm vào Build Settings.");
+            Debug.Log("Scene " + sceneName + " đã được thêm vào Build Settings.");
         }
 
         [MenuItem("Luzart/Play")]
@@ -458,4 +456,3 @@ namespace Luzart
         }
     }
 #endif
-}

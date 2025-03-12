@@ -1,48 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SelectChangeGameObjectIndex : BaseSelect
+namespace Luzart
 {
-    public GroupGameObject[] obSelects;
-
-    public override void Select(int index)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class SelectChangeGameObjectIndex : BaseSelect
     {
-        int length = obSelects.Length;
-        for (int i = 0; i < length; i++)
+        public GroupGameObject[] obSelects;
+    
+        public override void Select(int index)
         {
-            if(i == index)
-            {
-                continue;
-            }
-            SetActiveGroup(obSelects[i],false);
-        }
-        SetActiveGroup(obSelects[index], true);
-
-    }
-    private void SetActiveObject(GameObject ob, bool status)
-    {
-        if (ob != null)
-        {
-            ob.SetActive(status);
-        }
-    }
-    private void SetActiveGroup(GroupGameObject group, bool status)
-    {
-        if (group != null && group.obGroups!=null && group.obGroups.Length >0)
-        {
-            int length = group.obGroups.Length;
+            int length = obSelects.Length;
             for (int i = 0; i < length; i++)
             {
-                SetActiveObject(group.obGroups[i],status);
+                if(i == index)
+                {
+                    continue;
+                }
+                SetActiveGroup(obSelects[i],false);
+            }
+            SetActiveGroup(obSelects[index], true);
+    
+        }
+        private void SetActiveObject(GameObject ob, bool status)
+        {
+            if (ob != null)
+            {
+                ob.SetActive(status);
             }
         }
+        private void SetActiveGroup(GroupGameObject group, bool status)
+        {
+            if (group != null && group.obGroups!=null && group.obGroups.Length >0)
+            {
+                int length = group.obGroups.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    SetActiveObject(group.obGroups[i],status);
+                }
+            }
+        }
+    
+        [System.Serializable]
+        public class GroupGameObject
+        {
+            public GameObject[] obGroups;
+        }
+    
     }
-
-    [System.Serializable]
-    public class GroupGameObject
-    {
-        public GameObject[] obGroups;
-    }
-
 }

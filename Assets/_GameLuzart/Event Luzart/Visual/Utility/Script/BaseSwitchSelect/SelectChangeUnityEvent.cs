@@ -1,20 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-
-public class SelectChangeUnityEvent : BaseSelect
+namespace Luzart
 {
-    public UnityEvent eventSelect, eventUnSelect;
-    public override void Select(bool isSelect)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.Events;
+    
+    public class SelectChangeUnityEvent : BaseSelect
     {
-        if (isSelect)
+        public UnityEvent eventSelect, eventUnSelect;
+        public override void Select(bool isSelect)
         {
-            eventSelect.Invoke();
-        }
-        else
-        {
-            eventUnSelect.Invoke();
+            if (isSelect)
+            {
+                eventSelect.Invoke();
+            }
+            else
+            {
+                eventUnSelect.Invoke();
+            }
         }
     }
 }

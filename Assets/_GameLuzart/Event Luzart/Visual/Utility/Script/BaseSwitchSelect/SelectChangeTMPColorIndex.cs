@@ -1,49 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UIElements;
-
-public class SelectChangeTMPColorIndex : BaseSelect
+namespace Luzart
 {
-    public TMP_Text[] txts;
-    public GroupColor[] groupColor;
-
-    public override void Select(int index)
+    using System.Collections;
+    using System.Collections.Generic;
+    using TMPro;
+    using UnityEngine;
+    using UnityEngine.UIElements;
+    
+    public class SelectChangeTMPColorIndex : BaseSelect
     {
-        if (groupColor == null)
+        public TMP_Text[] txts;
+        public GroupColor[] groupColor;
+    
+        public override void Select(int index)
         {
-            return;
+            if (groupColor == null)
+            {
+                return;
+            }
+            int lengthTxt = txts.Length;
+            int lengthGroupColor = groupColor.Length;
+            if(index >= lengthGroupColor)
+            {
+                return;
+            }
+            var arrayColor = groupColor[index].colors;
+            if(arrayColor == null)
+            {
+                return;
+            }
+            int lengthColor = arrayColor.Length;
+            int length = Mathf.Min(lengthTxt, lengthColor);
+            for (int i = 0; i < length; i++)
+            {
+                txts[i].color = arrayColor[i];
+            }
         }
-        int lengthTxt = txts.Length;
-        int lengthGroupColor = groupColor.Length;
-        if(index >= lengthGroupColor)
+    
+        private void SetTextColor(TMP_Text txt, Color color)
         {
-            return;
-        }
-        var arrayColor = groupColor[index].colors;
-        if(arrayColor == null)
-        {
-            return;
-        }
-        int lengthColor = arrayColor.Length;
-        int length = Mathf.Min(lengthTxt, lengthColor);
-        for (int i = 0; i < length; i++)
-        {
-            txts[i].color = arrayColor[i];
+            if (txt != null)
+            {
+                txt.color = color;
+            }
         }
     }
-
-    private void SetTextColor(TMP_Text txt, Color color)
+    [System.Serializable]
+    public struct GroupColor
     {
-        if (txt != null)
-        {
-            txt.color = color;
-        }
+        public Color[] colors;
     }
-}
-[System.Serializable]
-public struct GroupColor
-{
-    public Color[] colors;
 }

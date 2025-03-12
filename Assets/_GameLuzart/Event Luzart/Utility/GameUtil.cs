@@ -477,6 +477,7 @@ namespace Luzart
             // Nếu không thỏa mãn điều kiện nào
             return 0; // Hoặc giá trị mặc định khác
         }
+
         #endregion
 
         public static List<GameObject> FindGameObjectsByName(string name)
@@ -752,6 +753,18 @@ namespace Luzart
                 ++num;
             }
             return -1;
+        }
+        public static void Shuffle<T>(this IList<T> ts)
+        {
+            var count = ts.Count;
+            var last = count - 1;
+            for (var i = 0; i < last; ++i)
+            {
+                var r = UnityEngine.Random.Range(i, count);
+                var tmp = ts[i];
+                ts[i] = ts[r];
+                ts[r] = tmp;
+            }
         }
     }
 

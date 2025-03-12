@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DontDestroyOnLoad : MonoBehaviour
+namespace Luzart
 {
-    private void Awake()
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class DontDestroyOnLoad : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

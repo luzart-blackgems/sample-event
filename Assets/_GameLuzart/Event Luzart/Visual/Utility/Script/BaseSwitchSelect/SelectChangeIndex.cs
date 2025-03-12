@@ -1,19 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SelectChangeIndex : BaseSelect
+namespace Luzart
 {
-    public BaseSelect[] baseSelect;
-
-    public override void Select(int index)
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
+    public class SelectChangeIndex : BaseSelect
     {
-        base.Select(index);
-        int length = baseSelect.Length;
-        for (int i = 0; i < length; i++)
+        public BaseSelect[] baseSelect;
+    
+        public override void Select(int index)
         {
-            bool status = index == i;
-            baseSelect[i].Select(status);
+            base.Select(index);
+            int length = baseSelect.Length;
+            for (int i = 0; i < length; i++)
+            {
+                bool status = index == i;
+                baseSelect[i].Select(status);
+            }
         }
     }
 }

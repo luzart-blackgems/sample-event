@@ -1,98 +1,101 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Luzart;
-
-public class BoxInforMess : MonoBehaviour
+namespace Luzart
 {
-    private RectTransform _rtMe = null;
-    public RectTransform rectTransform
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using Luzart;
+    
+    public class BoxInforMess : MonoBehaviour
     {
-        get
+        private RectTransform _rtMe = null;
+        public RectTransform rectTransform
         {
-            if (_rtMe == null)
+            get
             {
-                _rtMe = GetComponent<RectTransform>();
-            }
-            return _rtMe;
-        }
-    }
-    public BaseSelect baseBox;
-    public ListResUI listResUI;
-    public Action actionClickBox;
-    public void InitMess(EStateClaim state, params DataResource[] dataRes )
-    {
-        switch (state)
-        {
-            case EStateClaim.Chest:
+                if (_rtMe == null)
                 {
-                    baseBox.Select(3);
-                    if( listResUI != null )
+                    _rtMe = GetComponent<RectTransform>();
+                }
+                return _rtMe;
+            }
+        }
+        public BaseSelect baseBox;
+        public ListResUI listResUI;
+        public Action actionClickBox;
+        public void InitMess(EStateClaim state, params DataResource[] dataRes )
+        {
+            switch (state)
+            {
+                case EStateClaim.Chest:
                     {
-                        listResUI.InitResUI(dataRes);
+                        baseBox.Select(3);
+                        if( listResUI != null )
+                        {
+                            listResUI.InitResUI(dataRes);
+                        }
+                        break;
                     }
-                    break;
-                }
-            case EStateClaim.CanClaim:
-                {
-                    baseBox.Select(4);
-                    break;
-                }
-            case EStateClaim.WillClaim:
-                {
-                    baseBox.Select(1);
-                    break;
-                }
-            case EStateClaim.Claimed:
-                {
-                    baseBox.Select(0);
-                    break;
-                }
-            case EStateClaim.NeedIAP:
-                {
-                    baseBox.Select(2);
-                    break;
-                }
-
-
-        }
-
-    }
-    private void OnEnable()
-    {
-        StartWaitToUpdate();
-    }
-    private void OnDisable()
-    {
-        if (corIEWaitToUpdate != null)
-        {
-            StopCoroutine(corIEWaitToUpdate);
-        }
-    }
-    private void StartWaitToUpdate()
-    {
-        if (corIEWaitToUpdate != null)
-        {
-            StopCoroutine(corIEWaitToUpdate);
-        }
-        corIEWaitToUpdate = StartCoroutine(IEWaitToUpdate());
-    }
-    private Coroutine corIEWaitToUpdate = null;
-    private IEnumerator IEWaitToUpdate()
-    {
-        yield return new WaitForSeconds(0.2f);
-        while (gameObject.activeInHierarchy)
-        {
-            if (gameObject.activeSelf)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    gameObject.SetActive(false);
-                    actionClickBox?.Invoke();
-                }
+                case EStateClaim.CanClaim:
+                    {
+                        baseBox.Select(4);
+                        break;
+                    }
+                case EStateClaim.WillClaim:
+                    {
+                        baseBox.Select(1);
+                        break;
+                    }
+                case EStateClaim.Claimed:
+                    {
+                        baseBox.Select(0);
+                        break;
+                    }
+                case EStateClaim.NeedIAP:
+                    {
+                        baseBox.Select(2);
+                        break;
+                    }
+    
+    
             }
-            yield return null;
+    
+        }
+        private void OnEnable()
+        {
+            StartWaitToUpdate();
+        }
+        private void OnDisable()
+        {
+            if (corIEWaitToUpdate != null)
+            {
+                StopCoroutine(corIEWaitToUpdate);
+            }
+        }
+        private void StartWaitToUpdate()
+        {
+            if (corIEWaitToUpdate != null)
+            {
+                StopCoroutine(corIEWaitToUpdate);
+            }
+            corIEWaitToUpdate = StartCoroutine(IEWaitToUpdate());
+        }
+        private Coroutine corIEWaitToUpdate = null;
+        private IEnumerator IEWaitToUpdate()
+        {
+            yield return new WaitForSeconds(0.2f);
+            while (gameObject.activeInHierarchy)
+            {
+                if (gameObject.activeSelf)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        gameObject.SetActive(false);
+                        actionClickBox?.Invoke();
+                    }
+                }
+                yield return null;
+            }
         }
     }
 }
