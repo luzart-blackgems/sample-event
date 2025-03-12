@@ -623,7 +623,6 @@ MonoBehaviour:
   baseEventManagers:
   - {fileID: 5448345009506783120}
   - {fileID: 3880519149857489513}
-  - {fileID: 0}
   list_Event:
   - idEvent: dailyreward
     eventName: 7
@@ -1133,4 +1132,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b30aee384c7d7040a9f33a5f0ebba55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteResourcesSO: {fileID: 11400000, guid: bba9884cfc740024091fb1811e21eb63, type: 2}
+  spriteResourcesSO: {fileID: 11400000, guid: 7cd0fb9f64018114fb4ff267fe0fd95e, type: 2}

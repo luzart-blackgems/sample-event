@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7519142764592141578}
-  - component: {fileID: 4715518999409903040}
+  - component: {fileID: 1245565070628687845}
   m_Layer: 5
   m_Name: ButtonMainMenu_1
   m_TagString: Untagged
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4715518999409903040
+--- !u!114 &1245565070628687845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,11 +47,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 817967277017285343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 318ba0011602e3f4aa8d1a662271663a, type: 3}
+  m_Script: {fileID: 11500000, guid: 80c65513ca9827240af0afe0877aafbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btn: {fileID: 8391732966616001260}
-  muiTen: {fileID: 4054324669368690427}
+  btn: {fileID: 0}
+  muiTen: {fileID: 0}
 --- !u!1 &2070707771493710290
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2869155695848567590}
-  - component: {fileID: 2985533882393862957}
+  - component: {fileID: 3837317816455315833}
   m_Layer: 5
   m_Name: ButtonMainMenu_0
   m_TagString: Untagged
@@ -597,7 +597,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2985533882393862957
+--- !u!114 &3837317816455315833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -606,11 +606,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6355469036050374887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 318ba0011602e3f4aa8d1a662271663a, type: 3}
+  m_Script: {fileID: 11500000, guid: 80c65513ca9827240af0afe0877aafbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btn: {fileID: 8540849766640707117}
-  muiTen: {fileID: 3364254911927548195}
+  btn: {fileID: 0}
+  muiTen: {fileID: 0}
 --- !u!1 &7136119737565811690
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,8 +794,8 @@ MonoBehaviour:
   isAnimBtnClose: 0
   isCache: 0
   screenTutorials:
-  - {fileID: 2985533882393862957}
-  - {fileID: 4715518999409903040}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8784192312930684103
 GameObject:
   m_ObjectHideFlags: 0
